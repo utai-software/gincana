@@ -23,13 +23,3 @@ This blend of real-world navigation and digital interaction creates a fun, dynam
 ![Gincana View 6]([https://github.com/utai-software/gincana/blob/main/marketing-collateral/UTAI_SOFTWARE_Gincana_Example_Workflow_6.jpeg])
 ![Gincana View 7]([https://github.com/utai-software/gincana/blob/main/marketing-collateral/UTAI_SOFTWARE_Gincana_Example_Workflow_7.jpeg])
 ![Gincana View 8]([https://github.com/utai-software/gincana/blob/main/marketing-collateral/UTAI_SOFTWARE_Gincana_Example_Workflow_8.jpeg])
-
-
-![Gincana View 1]([https://ruta-generada-por-github](https://github.com/utai-software/gincana/blob/main/marketing-collateral/UTAI_SOFTWARE_Gincana_Example_Workflow_2.jpeg))
-![Gincana View 1]([https://ruta-generada-por-github](https://github.com/utai-software/gincana/blob/main/marketing-collateral/UTAI_SOFTWARE_Gincana_Example_Workflow_3.jpeg))
-![Gincana View 1]([https://ruta-generada-por-github](https://github.com/utai-software/gincana/blob/main/marketing-collateral/UTAI_SOFTWARE_Gincana_Example_Workflow_4.jpeg))
-![Gincana View 1]([https://ruta-generada-por-github](https://github.com/utai-software/gincana/blob/main/marketing-collateral/UTAI_SOFTWARE_Gincana_Example_Workflow_5.jpeg))
-![Gincana View 1]([https://ruta-generada-por-github](https://github.com/utai-software/gincana/blob/main/marketing-collateral/UTAI_SOFTWARE_Gincana_Example_Workflow_6.jpeg))
-![Gincana View 1]([https://ruta-generada-por-github](https://github.com/utai-software/gincana/blob/main/marketing-collateral/UTAI_SOFTWARE_Gincana_Example_Workflow_7.jpeg))
-![Gincana View 1]([https://ruta-generada-por-github](https://github.com/utai-software/gincana/blob/main/marketing-collateral/UTAI_SOFTWARE_Gincana_Example_Workflow_8.jpeg))
-
