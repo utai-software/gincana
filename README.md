@@ -27,7 +27,7 @@ This blend of real-world navigation and digital interaction creates a fun, dynam
 
 # Inspired on Enemy of the State film (Will Smith)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BJjcX--0rvk?si=J1fG4XieDxWUS8cq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[Watch the trailer on YouTube](https://www.youtube.com/watch?v=BJjcX--0rvk)
 
 Explanation of the Gincana Based on "Enemy of the State":
 Concept: The gincana is a game of strategy, stealth, and quick thinking, set in an environment where players must complete tasks while being monitored by an unseen "state" or authority. The objective is to gather pieces of critical information (data or clues) scattered throughout different locations while avoiding detection by agents of the surveillance system.
