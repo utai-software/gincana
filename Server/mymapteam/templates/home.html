@@ -1,0 +1,95 @@
+<!-- 
+Copyright (C) 2024 UTAI SOFTWARE
+
+Este programa es software libre: puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o (a tu elección) cualquier versión posterior.
+
+Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; incluso sin la garantía implícita de COMERCIABILIDAD o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Consulta los detalles de la Licencia Pública General de GNU para obtener más información.
+
+Deberías haber recibido una copia de la Licencia Pública General de GNU junto con este programa. Si no es así, visita <https://www.gnu.org/licenses/>.
+
+---
+
+Copyright (C) 2024 UTAI SOFTWARE
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gincana - UTAI SOFTWARE Beta1.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Aquí se incluirá el contenido específico de la página -->
+    
+    <div class="overlay"></div>
+    <div class="cookie-banner">
+        <p>Esta web es un piloto interno de UTAI SOFTWARE. Este sitio web utiliza cookies para mejorar la experiencia del usuario.</p>
+        <button>Aceptar</button>
+    </div>
+
+    <div class="header">
+        <h1>GIS4POLICE</h1>
+    </div>
+
+    <div class="main">
+        <div class="top-row">
+            <div class="content">
+                <!-- Servicios -->
+                <div class="service">
+                    <h2><i class="fas fa-map icon"></i>Creación de Mapas Dinámicos con Geoposicionamiento para Trabajo en Equipo</h2>
+                    <p>La creación de mapas dinámicos con geolocalización para trabajo en equipo puede ser una herramienta valiosa para mejorar la colaboración y la eficiencia en un grupo.</p>
+                </div>
+                <div class="service">
+                    <h2><i class="fas fa-globe icon"></i>Integración de APIs de Mapas de Google Maps</h2>
+                    <p>Integramos las mejores APIs de mapas de Google en TheMapTeam, proporcionando una experiencia de usuario fluida y eficiente.</p>
+                </div>
+                <div class="service">
+                    <h2><i class="fas fa-user-shield icon"></i>El Final de Compartir tu Ubicación a través de WhatsApp o Google</h2>
+                    <p>Dejar de compartir tu ubicación en estas apps puede fomentar una mayor independencia y responsabilidad entre los miembros de tu familia o equipo.</p>
+                </div>
+                <div class="service">
+                    <h2><i class="fas fa-user-shield icon"></i>Gis4Police el primer juego GIS que incorpora la funcionalidad de las geofences</h2>
+                    <p>El proyecto GIS4POLICE se concibe como una plataforma de entrenamiento interactivo para mejorar las habilidades de campo de agentes de seguridad y fuerzas del orden.</p>
+                </div>
+            </div>
+
+            <!-- Login box -->
+            <div class="login-box">
+                <h2>Iniciar Sesión</h2>
+                <h4>Organizador</h4>
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <input type="text" name="username" placeholder="Nombre de usuario" required>
+                    <input type="password" name="password" placeholder="Contraseña" required>
+                    <button type="submit">Ingresar</button>
+                    <p>¿No tienes una cuenta? <a href="{% url 'register' %}">Regístrate aquí</a></p>
+                </form>
+            </div>
+        </div>
+
+        <div class="service">
+            <!-- Contenido adicional -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 UTAI SOFTWARE. Todos los derechos reservados.</p>
+    </div>
+
+    <script src="../static/js/home.js"></script>
+</body>
+
+</html>

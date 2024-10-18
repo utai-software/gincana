@@ -1,0 +1,157 @@
+<!--
+Copyright (C) 2024 UTAI SOFTWARE
+
+Este programa es software libre: puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General de GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o (a tu elección) cualquier versión posterior.
+
+Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; incluso sin la garantía implícita de COMERCIABILIDAD o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Consulta los detalles de la Licencia Pública General de GNU para obtener más información.
+
+Deberías haber recibido una copia de la Licencia Pública General de GNU junto con este programa. Si no es así, visita <https://www.gnu.org/licenses/>.
+
+---
+
+Copyright (C) 2024 UTAI SOFTWARE
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>. 
+  -->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Dispositivos Conectados</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&callback=initMap"
+        async defer></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/viewer.css">
+
+    <meta property="og:title" content="Mapa de Dispositivos Conectados" />
+    <meta property="og:description" content="Visualiza la ubicación de los dispositivos conectados en tiempo real." />
+    <meta property="og:image" content="https://utai.es/wp-content/uploads/2020/07/utai-transparent-597x600.png">
+    <meta property="og:url" content="https://themapteam.com">
+</head>
+
+<body>
+    <div id="map-data" data-points='{{ points|safe }}'></div>
+
+    <div id="user-data" data-logged-in-user-id="{{ logged_In_user_ID }} " data-logged-in-user="{{ logged_in_user }}"
+       data-idmeet="{{ reservation.idmeet }}">
+    </div>
+
+    <audio id="alert-sound" src="https://www2.cs.uic.edu/~i101/SoundFiles/PinkPanther30.wav" preload="auto"></audio>
+
+    <div id="form-container">
+        <form id="user-form">
+            <div class="badge"></div>
+            <h3>Información de Usuario</h3>
+            <label for="color">Color del Marcador:</label>
+            <input type="color" id="color" name="color" required class="form-control">
+            <label for="refresh-interval">Intervalo de Refresco (segundos):</label>
+            <input type="number" id="refresh-interval" name="refresh-interval" min="1" required class="form-control">
+            <div class="form-check mt-3">
+                <input type="checkbox" id="terms" required>
+                <label class="form-check-label" for="terms">Acepto los <a href="#" target="_blank">términos y
+                        condiciones</a></label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Unirse</button>
+        </form>
+    </div>
+
+    <div id="content">
+        <div id="sidebar" class="col-3">
+            <div class="viewer-summary">
+                <p>Reserva ID: {{ reservation.idmeet }}</p>
+                <p><strong>Nombre:</strong> {{ reservation.user_name }}</p>
+                <p><strong>Fecha:</strong> {{ reservation.date }}</p>
+                <p><strong>Hora:</strong> {{ reservation.time }}</p>
+                <p><strong>Duración:</strong> {{ reservation.duration }} horas</p>
+            </div>
+            <h2>Conexiones Activas</h2>
+            <ul id="locations-list"></ul>
+            {% if is_creator %}
+            <a href="{% url 'add_point_of_interest' %}?idmeet={{ reservation.idmeet }}"
+                class="btn btn-primary mt-3">Añadir Punto de Interés</a>
+            <a href="{% url 'list_points_of_interest' reservation.idmeet %}" class="btn btn-secondary mt-3">Ver Puntos
+                de Interés</a>
+            {% endif %}
+        </div>
+
+        <div id="map-container">
+            <div id="map"></div>
+            <div id="points-container">
+                <h5 class="text-center font-weight-bold">Puntos de {{ logged_in_user }}</h5>
+                <ul class="list-unstyled text-center mt-3">
+                    <li>
+                        <i class="fas fa-trophy text-warning mr-2 fa-lg"></i>
+                        <span class="font-weight-bold">{{ logged_in_user }}</span>
+                        <span class="text-success font-weight-bold" style="font-size: 1rem;">{{ total_puntos }}
+                            pts</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="enlaceModal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Enlace del Punto de Interés</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       
+                        <iframe id="videoIframe" width="100%" height="315" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                      
+                        <p id="modalEnlaceTexto"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <a id="enlaceButton" href="#" class="btn btn-primary" target="_blank">Ir al Enlace</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="modal fade" id="questionModal" role="dialog" aria-labelledby="questionModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="questionModalLabel">Pregunta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="questionTexto"></p>
+                        <div class="d-flex justify-content-around">
+                            <button id="correctAnswerButton" class="btn btn-success">Respuesta Correcta</button>
+                            <button id="incorrectAnswerButton" class="btn btn-danger">Respuesta Incorrecta</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/js/viewer.js"></script>
+</body>
+
+</html>
