@@ -42,7 +42,7 @@ In a GIS4Police environment, gamification can be a powerful tool to engage offic
 <img src="https://raw.githubusercontent.com/utai-software/gincana/refs/heads/main/marketing-collateral/UTAI_SOFTWARE_Gincana_Example_Workflow_8.jpeg" alt="Gincana View 8">
 
 
-# Inspired on Enemy of the State film (Will Smith)
+### Inspired on Enemy of the State film (Will Smith)
 
 [Watch the trailer on YouTube](https://www.youtube.com/watch?v=BJjcX--0rvk)
 
